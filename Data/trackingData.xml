@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+
+<TrackingData>
+    
+	<Sensors>
+		<Sensor Type="FeatureBasedSensorSource" Subtype="Fast">
+
+			<SensorID>FeatureTracking1</SensorID>
+
+            <Parameters>
+			
+				<FeatureDescriptorAlignment>regular</FeatureDescriptorAlignment>
+				<MaxObjectsToDetectPerFrame>2</MaxObjectsToDetectPerFrame>
+				<MaxObjectsToTrackInParallel>2</MaxObjectsToTrackInParallel>
+				<SimilarityThreshold>0.7</SimilarityThreshold>
+					
+			</Parameters>
+
+			<SensorCOS>
+				<SensorCosID>Patch1</SensorCosID>
+				<Parameters>
+					<ReferenceImage WidthMM="368" HeightMM="368" >blueturretmarker.png</ReferenceImage>
+					<SimilarityThreshold>0.6</SimilarityThreshold>
+				</Parameters>
+			</SensorCOS>
+
+			<SensorCOS>
+				<SensorCosID>Patch2</SensorCosID>
+				<Parameters>
+					<ReferenceImage WidthMM="368" HeightMM="368" >redturretmarker.png</ReferenceImage>
+					<SimilarityThreshold>0.6</SimilarityThreshold>
+				</Parameters>
+			</SensorCOS>
+            
+		</Sensor>
+	</Sensors>
+
+	<Connections>
+		<COS>
+			<Name>blueone</Name>
+			<Fuser Type="SmoothingFuser">
+				<Parameters>
+					<KeepPoseForNumberOfFrames>2</KeepPoseForNumberOfFrames>
+					<GravityAssistance></GravityAssistance>
+					<AlphaTranslation>1.0</AlphaTranslation>
+					<GammaTranslation>1.0</GammaTranslation>
+					<AlphaRotation>0.8</AlphaRotation>
+					<GammaRotation>0.8</GammaRotation>
+					<ContinueLostTrackingWithOrientationSensor>false</ContinueLostTrackingWithOrientationSensor>
+				</Parameters>
+			</Fuser>
+
+			<SensorSource>
+				<SensorID>FeatureTracking1</SensorID>
+				<SensorCosID>Patch1</SensorCosID>
+			</SensorSource>
+            
+		</COS>
+
+		<COS>
+			<Name>redone</Name>
+			<Fuser Type="SmoothingFuser">
+				<Parameters>
+					<KeepPoseForNumberOfFrames>2</KeepPoseForNumberOfFrames>
+					<GravityAssistance></GravityAssistance>
+					<AlphaTranslation>1.0</AlphaTranslation>
+					<GammaTranslation>1.0</GammaTranslation>
+					<AlphaRotation>0.8</AlphaRotation>
+					<GammaRotation>0.8</GammaRotation>
+					<ContinueLostTrackingWithOrientationSensor>false</ContinueLostTrackingWithOrientationSensor>
+				</Parameters>
+			</Fuser>
+
+			<SensorSource>
+				<SensorID>FeatureTracking1</SensorID>
+				<SensorCosID>Patch2</SensorCosID>
+            </SensorSource>
+		</COS>
+		
+	</Connections>
+</TrackingData>
